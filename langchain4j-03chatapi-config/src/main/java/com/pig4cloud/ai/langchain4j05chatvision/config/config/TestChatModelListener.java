@@ -1,4 +1,4 @@
-package com.pig4cloud.ai.langchain4j02chatapi.config;
+package com.pig4cloud.ai.langchain4j05chatvision.config.config;
 
 import dev.langchain4j.model.chat.listener.*;
 import lombok.extern.slf4j.Slf4j;

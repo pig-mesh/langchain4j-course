@@ -2,7 +2,7 @@ langchain4j:
   open-ai:
     chat-model:
       # ???? KEY?????????? KEY
-      api-key: sk-02e452c44fda4e1c9085825ab7da2b73
+      api-key: sk-xxx
       model-name: qwen-turbo
       # ????OpenAI?????base_url?https://dashscope.aliyuncs.com/compatible-mode/v1
       base-url: https://dashscope.aliyuncs.com/compatible-mode/v1

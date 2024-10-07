@@ -29,6 +29,8 @@
         <module>langchain4j-01simple</module>
         <module>langchain4j-02chatapi</module>
         <module>langchain4j-03chatapi-config</module>
+        <module>langchain4j-04chatstream</module>
+        <module>langchain4j-05chatapi-vision</module>
     </modules>
 
     <dependencyManagement>
