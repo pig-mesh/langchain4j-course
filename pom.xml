@@ -25,6 +25,12 @@
         </dependency>
     </dependencies>
 
+    <modules>
+        <module>langchain4j-01simple</module>
+        <module>langchain4j-02chatapi</module>
+        <module>langchain4j-03chatapi-config</module>
+    </modules>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
