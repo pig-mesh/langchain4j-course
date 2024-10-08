@@ -1,4 +1,4 @@
-package com.pig4cloud.ai.langchain4j05chatvision.config.service;
+package com.pig4cloud.ai.langchain4j02chatapi.service;
 
 /**
  * 聊天助手
