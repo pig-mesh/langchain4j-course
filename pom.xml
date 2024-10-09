@@ -39,6 +39,7 @@
         <module>langchain4j-11embedding2</module>
         <module>langchain4j-12graalvm</module>
         <module>langchain4j-13websearch</module>
+        <module>langchain4j-14sensitive-word</module>
     </modules>
 
     <dependencyManagement>
