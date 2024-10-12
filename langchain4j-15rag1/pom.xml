@@ -8,9 +8,9 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>langchain4j-14sensitive-word</artifactId>
-    <name>langchain4j-14sensitive-word</name>
-    <description>langchain4j-14sensitive-word</description>
+    <artifactId>langchain4j-15rag1</artifactId>
+    <name>langchain4j-15rag1</name>
+    <description>langchain4j-15rag1</description>
     <url/>
     <dependencies>
         <dependency>
@@ -34,10 +34,10 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.houbb</groupId>
-            <artifactId>sensitive-word</artifactId>
-            <version>0.21.0</version>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-easy-rag</artifactId>
         </dependency>
+
     </dependencies>
 
     <build>

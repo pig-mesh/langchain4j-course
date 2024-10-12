@@ -40,6 +40,9 @@
         <module>langchain4j-12graalvm</module>
         <module>langchain4j-13websearch</module>
         <module>langchain4j-14sensitive-word</module>
+        <module>langchain4j-15rag1</module>
+        <module>langchain4j-16rag2</module>
+        <module>langchain4j-17rag3</module>
     </modules>
 
     <dependencyManagement>
