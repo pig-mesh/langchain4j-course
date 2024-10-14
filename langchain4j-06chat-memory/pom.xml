@@ -8,9 +8,9 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>langchain4j-06-chatmemory</artifactId>
-    <name>langchain4j-06-chatmemory</name>
-    <description>langchain4j-06-chatmemory</description>
+    <artifactId>langchain4j-06chat-memory</artifactId>
+    <name>langchain4j-06chat-memory</name>
+    <description>langchain4j-06chat-memory</description>
     <url/>
     <dependencies>
         <dependency>

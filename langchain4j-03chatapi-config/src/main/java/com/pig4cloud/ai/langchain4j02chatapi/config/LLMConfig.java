@@ -1,6 +1,6 @@
-package com.pig4cloud.ai.langchain4j05chatvision.config.config;
+package com.pig4cloud.ai.langchain4j02chatapi.config;
 
-import com.pig4cloud.ai.langchain4j05chatvision.config.service.ChatAssistant;
+import com.pig4cloud.ai.langchain4j02chatapi.service.ChatAssistant;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
