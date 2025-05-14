@@ -31,8 +31,12 @@ class Langchain4j14SensitiveTest {
             // 初始化敏感词过滤器， 这一步必须在所有配置完成后调用
             .init();
 
+    /**
+     * 测试敏感词检测的基本功能
+     * 验证系统能否正确识别文本中的敏感词并返回所有找到的敏感词
+     */
     @Test
-    public void test1(){
+    public void testDefaultSensitiveWordDetection(){
         String text = "\"五星红旗迎风飘扬，毛主席的照片挂在墙上\"";
 
         boolean contains = SensitiveWordHelper.contains(text);
@@ -40,15 +44,19 @@ class Langchain4j14SensitiveTest {
         // 查找第一个敏感词
         String firstWord = SensitiveWordHelper.findFirst(text);
 
-// 查找所有敏感词
+        // 查找所有敏感词
         List<String> allWords = SensitiveWordHelper.findAll(text);
 
         System.out.println(allWords);
 
     }
 
+    /**
+     * 测试自定义敏感词库的检测功能
+     * 验证使用自定义词库配置的敏感词过滤器是否能正确识别非默认敏感词
+     */
     @Test
-    public void test2(){
+    public void testCustomSensitiveWordDetection(){
         System.out.println(wordBs.contains("人工智能"));
     }
 }

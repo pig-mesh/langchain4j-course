@@ -12,10 +12,11 @@ class Langchain4j01simpleApplicationTests {
 
 
     /**
-     * 通过调用chatModel的chat方法并输出结果来验证。
+     * 测试ChatModel基本功能
+     * 验证ChatModel是否能正确响应简单的问候语"你好"
      */
     @Test
-    void contextLoads() {
+    void testBasicChatModelResponse() {
         String chatted = chatModel.chat("你好");
         System.out.println(chatted);
     }

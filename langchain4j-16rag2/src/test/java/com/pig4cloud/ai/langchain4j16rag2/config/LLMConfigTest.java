@@ -26,24 +26,36 @@ class LLMConfigTest {
     @Autowired
     ChatAssistant chatAssistant;
 
+    /**
+     * 测试Word文档格式的RAG系统
+     * 验证系统能否正确加载.docx文件，建立向量存储并回答文档相关问题
+     */
     @Test
-    void testAdd() {
+    void testWordDocumentRagQuestionAnswering() {
         Document document = DocumentLoader.load(ClassPathSource.from("AI.docx"), new ApacheTikaDocumentParser());
         EmbeddingStoreIngestor.ingest(document, embeddingStore);
         String chat = chatAssistant.chat("合同的金额是多少");
         System.out.println(chat);
     }
 
+    /**
+     * 测试Apache Tika文档解析器功能
+     * 验证系统能否使用Tika解析器正确读取.docx文件的内容
+     */
     @Test
-    void test1() throws IOException {
+    void testApacheTikaDocumentParsing() throws IOException {
         InputStream inputStream = ClassPathSource.from("AI.docx").inputStream();
         Document document = new ApacheTikaDocumentParser().parse(inputStream);
 
         System.out.println(document);
     }
 
+    /**
+     * 测试文档分段功能
+     * 验证系统能否将文档按字符数量切分成多个文本片段
+     */
     @Test
-    void test2() throws IOException {
+    void testDocumentCharacterSplitting() throws IOException {
         InputStream inputStream = ClassPathSource.from("AI.docx").inputStream();
         Document document = new ApacheTikaDocumentParser().parse(inputStream);
 

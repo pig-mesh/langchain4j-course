@@ -24,8 +24,12 @@ class LLMConfigTest {
     private Resource resource;
 
 
+    /**
+     * 测试多模态图像识别功能
+     * 验证ChatModel能否正确分析图片并从中提取上证指数数据
+     */
     @Test
-    void chatModel() throws IOException {
+    void testImageRecognitionAndDataExtraction() throws IOException {
         byte[] byteArray = resource.getContentAsByteArray();
         String encodeToString = Base64.getEncoder().encodeToString(byteArray);
 

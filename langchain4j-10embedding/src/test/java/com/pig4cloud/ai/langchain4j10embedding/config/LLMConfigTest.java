@@ -27,8 +27,12 @@ class LLMConfigTest {
     @Autowired
     private EmbeddingStore<TextSegment> embeddingStore;
 
+    /**
+     * 测试Qdrant向量数据库集合创建
+     * 验证系统能否正确创建具有指定维度和相似度度量的向量集合
+     */
     @Test
-    void createCollection() {
+    void testCreateQdrantCollection() {
         var vectorParams = Collections.VectorParams.newBuilder()
                 .setDistance(Collections.Distance.Cosine)
                 .setSize(1024)
@@ -36,23 +40,35 @@ class LLMConfigTest {
         qdrantClient.createCollectionAsync("testv", vectorParams);
     }
 
+    /**
+     * 测试文本向量化基本功能
+     * 验证嵌入模型能否将文本转换为向量表示
+     */
     @Test
-    void embeddingModel() {
+    void testTextToEmbeddingConversion() {
         Response<Embedding> embeddingResponse = embeddingModel.embed("测试文本，文本向量化");
         System.out.println(embeddingResponse);
     }
 
 
+    /**
+     * 测试文本片段存储功能
+     * 验证系统能否将带有元数据的文本片段向量化并保存到嵌入存储中
+     */
     @Test
-    void testText() {
+    void testTextSegmentStorageWithMetadata() {
         TextSegment segment1 = TextSegment.from("浏览器报错 404，请检测您输入的路径是否正确");
         segment1.metadata().put("author", "冷冷");
         Embedding embedding1 = embeddingModel.embed(segment1).content();
         embeddingStore.add(embedding1, segment1);
     }
 
+    /**
+     * 测试基本向量搜索功能
+     * 验证系统能否通过语义相似度查询找到最相关的文本片段
+     */
     @Test
-    void testQuery1() {
+    void testBasicVectorSimilaritySearch() {
         Embedding queryEmbedding = embeddingModel.embed("404 是哪里的问题？").content();
         EmbeddingSearchRequest embeddingSearchRequest = EmbeddingSearchRequest.builder()
                 .queryEmbedding(queryEmbedding)
@@ -62,8 +78,12 @@ class LLMConfigTest {
         System.out.println(searchResult.matches().get(0).embedded().text());
     }
 
+    /**
+     * 测试带元数据过滤的向量搜索功能
+     * 验证系统能否在语义搜索的同时应用元数据过滤条件
+     */
     @Test
-    void testQuery2() {
+    void testVectorSearchWithMetadataFiltering() {
         Embedding queryEmbedding = embeddingModel.embed("404 是哪里的问题？").content();
         EmbeddingSearchRequest embeddingSearchRequest = EmbeddingSearchRequest.builder()
                 .queryEmbedding(queryEmbedding)

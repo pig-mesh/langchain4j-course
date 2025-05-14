@@ -23,8 +23,12 @@ class LLMConfigTest {
     ChatAssistant chatAssistant;
 
 
+    /**
+     * 测试基于检索增强生成(RAG)的文档问答功能
+     * 验证系统能否加载文档、建立向量存储并正确回答基于文档内容的问题
+     */
     @Test
-    void testAdd() {
+    void testDocumentRetrievalAndQuestionAnswering() {
         Document document = DocumentLoader.load(ClassPathSource.from("AI.txt"), new TextDocumentParser());
         EmbeddingStoreIngestor.ingest(document, embeddingStore);
 

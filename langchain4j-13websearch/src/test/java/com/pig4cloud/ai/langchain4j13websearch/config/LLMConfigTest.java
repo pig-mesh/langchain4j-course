@@ -11,8 +11,12 @@ class LLMConfigTest {
     @Autowired
     private ChatAssistant chatAssistant;
 
+    /**
+     * 测试Web搜索增强的问答功能
+     * 验证系统能否通过互联网搜索获取实时信息并回答关于上证指数的问题
+     */
     @Test
-    void chatAssistant() {
+    void testWebSearchEnhancedQuestionAnswering() {
         String chat = chatAssistant.chat("今天20241008 上证指数是多少？");
 
         System.out.println(chat);

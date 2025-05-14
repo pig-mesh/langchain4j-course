@@ -10,8 +10,12 @@ import org.junit.jupiter.api.Test;
  */
 public class GraalVMTests {
 
+    /**
+     * 测试GraalVM的JavaScript代码执行功能
+     * 验证系统能否通过GraalVM引擎正确执行斐波那契函数并返回结果
+     */
     @Test
-    public void test() {
+    public void testJavaScriptCodeExecution() {
 
         CodeExecutionEngine engine = new GraalVmJavaScriptExecutionEngine();
 
