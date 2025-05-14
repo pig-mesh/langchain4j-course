@@ -13,6 +13,7 @@ class LLMConfigTest {
     @Autowired
     private StreamingChatModel streamingChatLanguageModel;
 
+
     /**
      * 测试流式聊天模型的基本功能
      * 验证StreamingChatModel能否正确处理流式响应，并通过回调接口获取结果
@@ -22,8 +23,8 @@ class LLMConfigTest {
 
         streamingChatLanguageModel.chat("hello, 北京有什么好吃的？", new StreamingChatResponseHandler() {
             @Override
-            public void onPartialResponse(String s) {
-
+            public void onPartialResponse(String token) {
+                System.out.println("onNext: " + token);
             }
 
             @Override

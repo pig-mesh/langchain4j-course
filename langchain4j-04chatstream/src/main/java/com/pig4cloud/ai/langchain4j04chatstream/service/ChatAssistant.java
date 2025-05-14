@@ -1,5 +1,6 @@
 package com.pig4cloud.ai.langchain4j04chatstream.service;
 
+import dev.langchain4j.service.TokenStream;
 import reactor.core.publisher.Flux;
 
 /**
@@ -15,4 +16,12 @@ public interface ChatAssistant {
      * @return {@link Flux }<{@link String }>
      */
     Flux<String> chat(String message);
+
+    /**
+     * 创建TokenStream对象
+     *
+     * @param message 需要分词的消息内容
+     * @return 对应消息内容的TokenStream对象
+     */
+    TokenStream chatStream(String message);
 }
