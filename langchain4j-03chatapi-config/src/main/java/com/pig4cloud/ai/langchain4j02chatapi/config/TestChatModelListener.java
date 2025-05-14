@@ -1,6 +1,9 @@
 package com.pig4cloud.ai.langchain4j02chatapi.config;
 
-import dev.langchain4j.model.chat.listener.*;
+import dev.langchain4j.model.chat.listener.ChatModelErrorContext;
+import dev.langchain4j.model.chat.listener.ChatModelListener;
+import dev.langchain4j.model.chat.listener.ChatModelRequestContext;
+import dev.langchain4j.model.chat.listener.ChatModelResponseContext;
 import lombok.extern.slf4j.Slf4j;
 
 /**

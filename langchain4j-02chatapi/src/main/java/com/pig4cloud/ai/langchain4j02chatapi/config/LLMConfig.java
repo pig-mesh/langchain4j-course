@@ -1,7 +1,7 @@
 package com.pig4cloud.ai.langchain4j02chatapi.config;
 
 import com.pig4cloud.ai.langchain4j02chatapi.service.ChatAssistant;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 public class LLMConfig {
 
     @Bean
-    public ChatLanguageModel chatLanguageModel() {
+    public ChatModel chatModel() {
         return OpenAiChatModel.builder()
                 .apiKey(System.getenv("DASHSCOPE_KEY"))
                 .modelName("qwen-turbo")
@@ -26,8 +26,8 @@ public class LLMConfig {
     }
 
     @Bean
-    public ChatAssistant chatAssistant(ChatLanguageModel chatLanguageModel) {
-        return AiServices.create(ChatAssistant.class, chatLanguageModel);
+    public ChatAssistant chatAssistant(ChatModel chatModel) {
+        return AiServices.create(ChatAssistant.class, chatModel);
     }
 
 }

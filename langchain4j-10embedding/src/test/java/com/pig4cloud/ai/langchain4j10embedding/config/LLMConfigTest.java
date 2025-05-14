@@ -28,20 +28,18 @@ class LLMConfigTest {
     private EmbeddingStore<TextSegment> embeddingStore;
 
     @Test
-    void embeddingModel() {
-
-        Response<Embedding> embeddingResponse = embeddingModel.embed("测试文本，文本向量化");
-
-        System.out.println(embeddingResponse);
-    }
-
-    @Test
     void createCollection() {
         var vectorParams = Collections.VectorParams.newBuilder()
                 .setDistance(Collections.Distance.Cosine)
                 .setSize(1024)
                 .build();
         qdrantClient.createCollectionAsync("testv", vectorParams);
+    }
+
+    @Test
+    void embeddingModel() {
+        Response<Embedding> embeddingResponse = embeddingModel.embed("测试文本，文本向量化");
+        System.out.println(embeddingResponse);
     }
 
 
@@ -54,7 +52,7 @@ class LLMConfigTest {
     }
 
     @Test
-    void testQuery1(){
+    void testQuery1() {
         Embedding queryEmbedding = embeddingModel.embed("404 是哪里的问题？").content();
         EmbeddingSearchRequest embeddingSearchRequest = EmbeddingSearchRequest.builder()
                 .queryEmbedding(queryEmbedding)
@@ -65,7 +63,7 @@ class LLMConfigTest {
     }
 
     @Test
-    void testQuery2(){
+    void testQuery2() {
         Embedding queryEmbedding = embeddingModel.embed("404 是哪里的问题？").content();
         EmbeddingSearchRequest embeddingSearchRequest = EmbeddingSearchRequest.builder()
                 .queryEmbedding(queryEmbedding)

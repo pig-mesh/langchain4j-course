@@ -3,7 +3,7 @@ package com.pig4cloud.ai.langchain4j17rag3.config;
 import com.pig4cloud.ai.langchain4j17rag3.service.ChatAssistant;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.jina.JinaScoringModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.scoring.ScoringModel;
@@ -27,7 +27,7 @@ import org.springframework.context.annotation.Configuration;
 public class LLMConfig {
 
     @Bean
-    public ChatLanguageModel chatLanguageModel() {
+    public ChatModel chatModel() {
         return OpenAiChatModel.builder()
                 .apiKey(System.getenv("DASHSCOPE_KEY"))
                 .modelName("qwen-turbo")
@@ -47,14 +47,14 @@ public class LLMConfig {
 
 
     @Bean
-    public ChatAssistant assistant(ChatLanguageModel chatLanguageModel, EmbeddingStore<TextSegment> embeddingStore) {
+    public ChatAssistant assistant(ChatModel chatModel, EmbeddingStore<TextSegment> embeddingStore) {
         ScoringModel scoringModel = JinaScoringModel.builder()
                 .apiKey(System.getenv("JINA_API_KEY"))
                 .modelName("jina-reranker-v2-base-multilingual")
                 .build();
 
         DefaultRetrievalAugmentor retrievalAugmentor = DefaultRetrievalAugmentor.builder()
-                .queryTransformer(new CompressingQueryTransformer(chatLanguageModel)) //  调用大模型，格式化用户提问
+                .queryTransformer(new CompressingQueryTransformer(chatModel)) //  调用大模型，格式化用户提问
                 .contentRetriever(EmbeddingStoreContentRetriever.from(embeddingStore)) // 从嵌入存储中检索内容
                 .queryRouter(new DefaultQueryRouter(EmbeddingStoreContentRetriever.from(embeddingStore)))// 多个内容源
                 .contentInjector(new DefaultContentInjector()) // 注入内容
@@ -62,7 +62,7 @@ public class LLMConfig {
                 .build();
 
         return AiServices.builder(ChatAssistant.class)
-                .chatLanguageModel(chatLanguageModel)
+                .chatModel(chatModel)
                 .chatMemory(MessageWindowChatMemory.withMaxMessages(10))
                 .retrievalAugmentor(retrievalAugmentor)
                 //.contentRetriever(EmbeddingStoreContentRetriever.from(embeddingStore))

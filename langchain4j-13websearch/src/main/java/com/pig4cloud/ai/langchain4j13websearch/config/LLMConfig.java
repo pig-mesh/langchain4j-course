@@ -1,7 +1,7 @@
 package com.pig4cloud.ai.langchain4j13websearch.config;
 
 import com.pig4cloud.ai.langchain4j13websearch.service.ChatAssistant;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.web.search.WebSearchTool;
@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 public class LLMConfig {
 
     @Bean
-    public ChatLanguageModel chatLanguageModel() {
+    public ChatModel chatModel() {
         return OpenAiChatModel.builder()
                 .apiKey(System.getenv("DASHSCOPE_KEY"))
                 .modelName("qwen-turbo")
@@ -27,14 +27,14 @@ public class LLMConfig {
 
 
     @Bean
-    public ChatAssistant chatAssistant(ChatLanguageModel chatLanguageModel) {
+    public ChatAssistant chatAssistant(ChatModel chatModel) {
         SearchApiWebSearchEngine searchEngine = SearchApiWebSearchEngine.builder()
                 .apiKey("p8SZVNAweqTtoZBBTVnXttcj")// 测试使用
                 .engine("google")
                 .build();
 
         return AiServices.builder(ChatAssistant.class)
-                .chatLanguageModel(chatLanguageModel)
+                .chatModel(chatModel)
                 .tools(new WebSearchTool(searchEngine))
                 .build();
     }

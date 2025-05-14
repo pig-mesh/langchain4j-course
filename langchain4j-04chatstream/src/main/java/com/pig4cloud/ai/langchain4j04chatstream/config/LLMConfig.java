@@ -1,8 +1,8 @@
 package com.pig4cloud.ai.langchain4j04chatstream.config;
 
 import com.pig4cloud.ai.langchain4j04chatstream.service.ChatAssistant;
-import dev.langchain4j.model.chat.ChatLanguageModel;
-import dev.langchain4j.model.chat.StreamingChatLanguageModel;
+import dev.langchain4j.model.chat.ChatModel;
+import dev.langchain4j.model.chat.StreamingChatModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiStreamingChatModel;
 import dev.langchain4j.service.AiServices;
@@ -21,7 +21,7 @@ import java.time.Duration;
 public class LLMConfig {
 
     @Bean
-    public ChatLanguageModel chatLanguageModel() {
+    public ChatModel chatModel() {
         return OpenAiChatModel.builder()
                 .apiKey(System.getenv("DASHSCOPE_KEY"))
                 .modelName("qwen-turbo")
@@ -34,7 +34,7 @@ public class LLMConfig {
     }
 
     @Bean
-    public StreamingChatLanguageModel streamingChatLanguageModel(){
+    public StreamingChatModel streamingChatLanguageModel(){
         return OpenAiStreamingChatModel.builder()
                 .apiKey(System.getenv("DASHSCOPE_KEY"))
                 .modelName("qwen-turbo")
@@ -44,7 +44,7 @@ public class LLMConfig {
     }
 
     @Bean
-    public ChatAssistant chatAssistant(StreamingChatLanguageModel streamingChatLanguageModel){
+    public ChatAssistant chatAssistant(StreamingChatModel streamingChatLanguageModel){
         return AiServices.create(ChatAssistant.class, streamingChatLanguageModel);
     }
 }

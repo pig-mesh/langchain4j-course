@@ -3,7 +3,7 @@ package com.pig4cloud.ai.langchain4j08chatjson.config.config;
 import com.pig4cloud.ai.langchain4j08chatjson.config.service.NumberExtractor;
 import com.pig4cloud.ai.langchain4j08chatjson.config.service.PersonExtractor;
 import com.pig4cloud.ai.langchain4j08chatjson.config.service.SentimentAnalyzer;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 public class LLMConfig {
 
     @Bean
-    public ChatLanguageModel chatLanguageModel() {
+    public ChatModel chatModel() {
         return OpenAiChatModel.builder()
                 .apiKey(System.getenv("DASHSCOPE_KEY"))
                 .modelName("qwen-turbo")  // 设置使用的模型名称
@@ -27,17 +27,17 @@ public class LLMConfig {
     }
 
     @Bean
-    public NumberExtractor numberExtractor(ChatLanguageModel chatLanguageModel) {
-        return AiServices.create(NumberExtractor.class, chatLanguageModel);
+    public NumberExtractor numberExtractor(ChatModel chatModel) {
+        return AiServices.create(NumberExtractor.class, chatModel);
     }
 
     @Bean
-    public SentimentAnalyzer sentimentAnalyzer(ChatLanguageModel chatLanguageModel) {
-        return AiServices.create(SentimentAnalyzer.class, chatLanguageModel);
+    public SentimentAnalyzer sentimentAnalyzer(ChatModel chatModel) {
+        return AiServices.create(SentimentAnalyzer.class, chatModel);
     }
 
     @Bean
-    public PersonExtractor personExtractor(ChatLanguageModel chatLanguageModel) {
-        return AiServices.create(PersonExtractor.class, chatLanguageModel);
+    public PersonExtractor personExtractor(ChatModel chatModel) {
+        return AiServices.create(PersonExtractor.class, chatModel);
     }
 }

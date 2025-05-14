@@ -12,7 +12,8 @@
     <description>langchain4j course 配套源码</description>
 
     <properties>
-        <spring-boot.version>3.3.4</spring-boot.version>
+        <spring-boot.version>3.4.5</spring-boot.version>
+        <langchain4j.version>1.0.0</langchain4j.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -57,7 +58,7 @@
             <dependency>
                 <groupId>dev.langchain4j</groupId>
                 <artifactId>langchain4j-bom</artifactId>
-                <version>0.35.0</version>
+                <version>${langchain4j.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

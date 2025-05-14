@@ -1,7 +1,7 @@
 package com.pig4cloud.ai.langchain4j07chatprompt.config.config;
 
 import com.pig4cloud.ai.langchain4j07chatprompt.config.service.LegalAssistant;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 public class LLMConfig {
 
     @Bean
-    public ChatLanguageModel chatLanguageModel() {
+    public ChatModel chatModel() {
         return OpenAiChatModel.builder()
                 .apiKey(System.getenv("DASHSCOPE_KEY"))
                 .modelName("qwen-long")  // 设置使用的模型名称
@@ -25,7 +25,7 @@ public class LLMConfig {
     }
 
     @Bean
-    public LegalAssistant legalAssistant(ChatLanguageModel chatLanguageModel) {
-        return AiServices.create(LegalAssistant.class, chatLanguageModel);
+    public LegalAssistant legalAssistant(ChatModel chatModel) {
+        return AiServices.create(LegalAssistant.class, chatModel);
     }
 }

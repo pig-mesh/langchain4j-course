@@ -16,6 +16,7 @@ import reactor.core.publisher.Flux;
 @RequiredArgsConstructor
 @RequestMapping("/demo")
 public class DemoController {
+
     private final ChatAssistant chatAssistant;
 
     @GetMapping("/chat")

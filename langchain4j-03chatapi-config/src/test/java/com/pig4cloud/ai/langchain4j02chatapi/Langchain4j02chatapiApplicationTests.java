@@ -1,9 +1,8 @@
 package com.pig4cloud.ai.langchain4j02chatapi;
 
-import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.UserMessage;
-import dev.langchain4j.model.chat.ChatLanguageModel;
-import dev.langchain4j.model.output.Response;
+import dev.langchain4j.model.chat.ChatModel;
+import dev.langchain4j.model.chat.response.ChatResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,11 +11,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 class Langchain4j02chatapiApplicationTests {
 
     @Autowired
-    private ChatLanguageModel chatLanguageModel;
+    private ChatModel chatModel;
 
     @Test
     void contextLoads() {
-        String generate = chatLanguageModel.generate("你好");
+        String generate = chatModel.chat("你好");
 
         System.out.println(generate);
     }
@@ -24,9 +23,9 @@ class Langchain4j02chatapiApplicationTests {
     @Test
     void testChatMessage(){
         UserMessage userMessage = UserMessage.from("你好");
-        Response<AiMessage> generate = chatLanguageModel.generate(userMessage);
+        ChatResponse response = chatModel.chat(userMessage);
 
-        System.out.println(generate);
+        System.out.println(response.aiMessage().text());
     }
 
 }

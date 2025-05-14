@@ -1,35 +1,37 @@
 package com.pig4cloud.ai.langchain4j04chatstream.config;
 
-import dev.langchain4j.data.message.AiMessage;
-import dev.langchain4j.model.StreamingResponseHandler;
-import dev.langchain4j.model.chat.StreamingChatLanguageModel;
+import dev.langchain4j.model.chat.StreamingChatModel;
+import dev.langchain4j.model.chat.response.ChatResponse;
+import dev.langchain4j.model.chat.response.StreamingChatResponseHandler;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class LLMConfigTest {
 
     @Autowired
-    private StreamingChatLanguageModel streamingChatLanguageModel;
+    private StreamingChatModel streamingChatLanguageModel;
 
     @Test
     void streamingChatLanguageModel() throws InterruptedException {
 
-        streamingChatLanguageModel.generate("hello, 北京有什么好吃的？", new StreamingResponseHandler<AiMessage>() {
+        streamingChatLanguageModel.chat("hello, 北京有什么好吃的？", new StreamingChatResponseHandler() {
             @Override
-            public void onNext(String token) {
-                System.out.println(token);
+            public void onPartialResponse(String s) {
+
             }
 
             @Override
-            public void onError(Throwable error) {
+            public void onCompleteResponse(ChatResponse chatResponse) {
+
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
 
             }
         });
 
-        Thread.sleep(20000);
     }
 }
