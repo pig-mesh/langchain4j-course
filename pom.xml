@@ -12,11 +12,10 @@
     <description>langchain4j course 配套源码</description>
 
     <properties>
-        <spring-boot.version>3.4.5</spring-boot.version>
-        <langchain4j.version>1.0.0</langchain4j.version>
+        <spring-boot.version>3.5.9</spring-boot.version>
+        <langchain4j.version>1.10.0</langchain4j.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.release>25</maven.compiler.release>
     </properties>
 
     <dependencies>
@@ -64,4 +63,24 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.38</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
